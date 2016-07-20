@@ -6,6 +6,7 @@ minify_sets_norowsmessage = Es wurden keine Sets gefunden
 
 minify_sets_column_name = Name
 minify_sets_column_type = Typ
+minify_sets_column_snippet = Snippet
 
 minify_sets_formcaption_add = Set hinzufügen
 minify_sets_formcaption_edit = Set editieren

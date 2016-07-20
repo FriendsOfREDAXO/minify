@@ -2,7 +2,7 @@
 	$func = rex_request('func', 'string');
 	
 	if ($func == '') {
-		$list = rex_list::factory("SELECT `id`, `name`, `type` FROM `".rex::getTablePrefix()."minify_sets` ORDER BY `name` ASC");
+		$list = rex_list::factory("SELECT `id`, `name`, `type`, CONCAT('REX_MINIFY[type=',`type`,' set=',`name`,']') as `snippet` FROM `".rex::getTablePrefix()."minify_sets` ORDER BY `name` ASC");
 		$list->addTableAttribute('class', 'table-striped');
 		$list->setNoRowsMessage($this->i18n('sets_norowsmessage'));
 		
@@ -14,6 +14,7 @@
 		
 		$list->setColumnLabel('name', $this->i18n('sets_column_name'));
 		$list->setColumnLabel('type', $this->i18n('sets_column_type'));
+		$list->setColumnLabel('snippet', $this->i18n('sets_column_snippet'));
 		
 		$list->setColumnParams('name', ['id' => '###id###', 'func' => 'edit']);
 		
