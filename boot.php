@@ -14,7 +14,7 @@
 				if (!empty($sets)) {
 					$assets = explode(PHP_EOL, $sets[0]['assets']);
 					
-					$minify = new rex_minify();
+					$minify = new minify();
 					foreach($assets as $asset) {
 						$minify->addFile($asset, $match[2]);
 					}
