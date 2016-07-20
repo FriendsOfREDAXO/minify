@@ -1,0 +1,11 @@
+package: minify
+version: '1.0.0'
+author: Friends Of REDAXO
+supportpage: github.com/FriendsOfREDAXO/minify
+
+page:
+    title: 'translate:title'
+    perm: minify[]
+    pjax: true
+    subpages:
+        sets: { title: 'translate:sets', perm: minify[sets] }

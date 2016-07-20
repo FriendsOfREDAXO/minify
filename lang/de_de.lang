@@ -1,0 +1,19 @@
+minify_title = Minify
+
+#subpage sets
+minify_sets = Sets
+minify_sets_norowsmessage = Es wurden keine Sets gefunden
+
+minify_sets_column_name = Name
+minify_sets_column_type = Typ
+
+minify_sets_formcaption_add = Set hinzufügen
+minify_sets_formcaption_edit = Set editieren
+
+minify_sets_label_name = Name
+minify_sets_label_type = Typ
+minify_sets_label_assets = Assets
+
+#permissions
+perm_general_minify[] = Rechte für Minify-Addon
+perm_general_minify[sets] = Rechte für die Seite 'Sets' des Minify-Addons
