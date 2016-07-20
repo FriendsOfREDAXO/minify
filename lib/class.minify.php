@@ -1,16 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-
-	use MatthiasMullie\Minify;
-	
-	class rex_minify {
+	class minify {
 		private $files = [];
-		private $addon = '';
-		
-		public function __construct() {
-			$this->addon = rex_addon::get('minify');
-		}
 		
 		public function addFile($file, $set = 'default') {
 			$this->files[$set][] = $file;
@@ -25,8 +15,8 @@ ini_set('display_errors',1);
 			$oldCache = [];
 			$newCache = [];
 			
-			if (file_exists(rex_path::addonAssets('minify', 'cache'.'/'.$type.'_'.$set.'.json'))) {
-				$string = file_get_contents(rex_path::addonAssets('minify', 'cache'.'/'.$type.'_'.$set.'.json'));
+			if (file_exists(rex_path::addonAssets(__CLASS__, 'cache'.'/'.$type.'_'.$set.'.json'))) {
+				$string = file_get_contents(rex_path::addonAssets(__CLASS__, 'cache'.'/'.$type.'_'.$set.'.json'));
 				$oldCache = json_decode($string, true);
 			}
 			
@@ -53,19 +43,19 @@ ini_set('display_errors',1);
 				//Ebd - save path into cachefile
 				
 				if ($minify) {
-					$path = rex_path::addonAssets('minify', 'cache'.'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
+					$path = rex_path::addonAssets(__CLASS__, 'cache'.'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
 					$newCache['path'] = $path;
 					
 					switch($type) {
 						case 'css':
-							$minifier = new Minify\CSS();
+							$minifier = new MatthiasMullie\Minify\Minify\CSS();
 						break;
 						case 'js':
-							$minifier = new Minify\JS();
+							$minifier = new MatthiasMullie\Minify\Minify\JS();
 						break;
 					}
 					
-					if (!rex_file::put(rex_path::addonAssets('minify', 'cache'.'/'.$type.'_'.$set.'.json'), json_encode($newCache))) {
+					if (!rex_file::put(rex_path::addonAssets(__CLASS__, 'cache'.'/'.$type.'_'.$set.'.json'), json_encode($newCache))) {
 						echo 'Cachefile für '.$type.' konnte nicht geschrieben werden!';
 					}
 					
