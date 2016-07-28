@@ -1,5 +1,8 @@
 minify_title = Minify
 
+#subpage help
+help_infotext = Dieses Addon ermöglicht das minimieren und bündeln von CSS und JS Dateien.<br><br>Dazu kann man unter dem Punkt 'Minify' beliebig viele Sets anlegen. Wichtig ist, dass der Name eines Sets pro Typ (CSS/JS) nur einmal vorkommen kann. In das Feld 'Assets' kommen zeilengetrennt die Pfade zu den einzelnen Dateien. Die Pfade müssen Redaxo-Root relativ sein.<br><br>Anschliessend wird ein Snippet à la "REX_MINIFY[type=css set=default]" generiert, welches im Template an beliebiger Stelle platziert werden kann. Das Snippet ist jeweils in der Set-Übersicht zu finden und kann von da kopiert werden. Das Snippet wird im Frontend automatisch durch einen entsprechenden HTML-Tag ersetzt.
+
 #subpage sets
 minify_sets = Sets
 minify_sets_norowsmessage = Es wurden keine Sets gefunden
