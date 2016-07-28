@@ -2,6 +2,11 @@
 	class minify {
 		private $files = [];
 		
+		public function __construct() {
+			require_once(rex_path::addon(__CLASS__, 'vendor/minify/src/CSS.php'));
+			require_once(rex_path::addon(__CLASS__, 'vendor/minify/src/JS.php'));
+		}
+		
 		public function addFile($file, $set = 'default') {
 			$this->files[$set][] = $file;
 		}
@@ -48,10 +53,10 @@
 					
 					switch($type) {
 						case 'css':
-							$minifier = new MatthiasMullie\Minify\Minify\CSS();
+							$minifier = new MatthiasMullie\Minify\CSS();
 						break;
 						case 'js':
-							$minifier = new MatthiasMullie\Minify\Minify\JS();
+							$minifier = new MatthiasMullie\Minify\JS();
 						break;
 					}
 					
