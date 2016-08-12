@@ -1,5 +1,5 @@
 package: minify
-version: '1.0.1'
+version: '1.1.0'
 author: Friends Of REDAXO
 supportpage: github.com/FriendsOfREDAXO/minify
 
@@ -8,4 +8,5 @@ page:
     perm: minify[]
     pjax: true
     subpages:
+        config: { title: 'translate:config', perm: minify[config] }
         sets: { title: 'translate:sets', perm: minify[sets] }
