@@ -4,6 +4,7 @@ CREATE TABLE `%TABLE_PREFIX%minify_sets` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(30) NOT NULL DEFAULT '',
   `type` varchar(30) NOT NULL DEFAULT '',
+  `output` varchar(30) NOT NULL DEFAULT '',
   `assets` text NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
