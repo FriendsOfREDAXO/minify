@@ -68,9 +68,7 @@
 						$minifier->add(trim(rex_path::base(substr($file,1))));
 					}
 					
-					if ($output == 'file') {
-						$minifier->minify($path);
-					}
+					$minifier->minify($path);
 				}
 				
 				switch ($output) {
