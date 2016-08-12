@@ -35,6 +35,12 @@
 				}
 			}
 			
+			//Start - minify html
+				if ($this->getConfig('minifyhtml')) {
+					$content = preg_replace(['/<!--(.*)-->/Uis',"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
+				}
+			//End - minify html
+			
 			$ep->setSubject($content);
 		});
 	}
