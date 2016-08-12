@@ -67,6 +67,10 @@
 					foreach ($this->files[$set] as $file) {
 						$minifier->add(trim(rex_path::base(substr($file,1))));
 					}
+					
+					if ($output == 'file') {
+						$minifier->minify($path);
+					}
 				}
 				
 				switch ($output) {
