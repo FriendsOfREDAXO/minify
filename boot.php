@@ -7,7 +7,7 @@
 			foreach ($matches as $match) {
 				//Start - get set by name and type
 					$sql = rex_sql::factory();
-					$sets = $sql->getArray('SELECT `assets` FROM `'.rex::getTablePrefix().'minify_sets` WHERE type = ? AND name = ?', [$match[1], $match[2]]);
+					$sets = $sql->getArray('SELECT `assets`, `output` FROM `'.rex::getTablePrefix().'minify_sets` WHERE type = ? AND name = ?', [$match[1], $match[2]]);
 					unset($sql);
 				//End - get set by name and type
 				
@@ -19,14 +19,28 @@
 						$minify->addFile($asset, $match[2]);
 					}
 					
-					$path = $minify->minify($match[1], $match[2]);
+					$data = $minify->minify($match[1], $match[2], $sets[0]['output']);
 					
 					switch ($match[1]) {
 						case 'css':
-							$content = str_replace($match[0], '<link rel="stylesheet" href="'.$path.'">', $content);
+							switch ($sets[0]['output']) {
+								case 'inline':
+									$content = str_replace($match[0], '<style>'.$data.'</style>', $content);
+								break;
+								default:
+									$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'">', $content);
+								break;
+							}
 						break;
 						case 'js':
-							$content = str_replace($match[0], '<script src="'.$path.'"></script>', $content);
+							switch ($sets[0]['output']) {
+								case 'inline':
+									$content = str_replace($match[0], '<script>'.$data.'</script>', $content);
+								break;
+								default:
+									$content = str_replace($match[0], '<script src="'.$data.'"></script>', $content);
+								break;
+							}
 						break;
 					}
 					
