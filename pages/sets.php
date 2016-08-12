@@ -54,10 +54,10 @@
 			$select->addOption('JS', 'js');
 		//End - add type-field
 		
-		//Start - add name-field
+		//Start - add media-field
 			$field = $form->addTextField('media');
 			$field->setLabel($this->i18n('sets_label_media'));
-		//End - add name-field
+		//End - add media-field
 		
 		//Start - add output-field
 			$field = $form->addSelectField('output');
