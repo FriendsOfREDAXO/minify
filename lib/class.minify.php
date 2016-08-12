@@ -11,7 +11,7 @@
 			$this->files[$set][] = $file;
 		}
 		
-		public function minify($type, $set = 'default') {
+		public function minify($type, $set = 'default', $output = 'file') {
 			if (!in_array($type, ['css','js'])) {
 				return false;
 			}
@@ -67,11 +67,16 @@
 					foreach ($this->files[$set] as $file) {
 						$minifier->add(trim(rex_path::base(substr($file,1))));
 					}
-					
-					$minifier->minify($path);
 				}
 				
-				return substr($path,strlen(rex_path::base(''))-1);
+				switch ($output) {
+					case 'file':
+						return substr($path,strlen(rex_path::base(''))-1);
+					break;
+					case 'inline':
+						return rex_file::get($path);
+					break;
+				}
 			}
 			
 			return false;
