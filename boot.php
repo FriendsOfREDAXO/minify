@@ -7,7 +7,7 @@
 			foreach ($matches as $match) {
 				//Start - get set by name and type
 					$sql = rex_sql::factory();
-					$sets = $sql->getArray('SELECT `assets`, `output` FROM `'.rex::getTablePrefix().'minify_sets` WHERE type = ? AND name = ?', [$match[1], $match[2]]);
+					$sets = $sql->getArray('SELECT `assets`, `media`, `output` FROM `'.rex::getTablePrefix().'minify_sets` WHERE type = ? AND name = ?', [$match[1], $match[2]]);
 					unset($sql);
 				//End - get set by name and type
 				
@@ -25,10 +25,10 @@
 						case 'css':
 							switch ($sets[0]['output']) {
 								case 'inline':
-									$content = str_replace($match[0], '<style>'.$data.'</style>', $content);
+									$content = str_replace($match[0], '<style '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>'.$data.'</style>', $content);
 								break;
 								default:
-									$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'">', $content);
+									$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'" '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>', $content);
 								break;
 							}
 						break;
