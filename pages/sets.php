@@ -54,6 +54,16 @@
 			$select->addOption('JS', 'js');
 		//End - add type-field
 		
+		//Start - add output-field
+			$field = $form->addSelectField('output');
+			$field->setLabel($this->i18n('sets_label_output'));
+			
+			$select = $field->getSelect();
+			$select->setSize(1);
+			$select->addOption('Datei', 'file');
+			$select->addOption('Inline', 'inline');
+		//End - add output-field
+		
 		//Start - add assets-field
 			$field = $form->addTextAreaField('assets');
 			$field->setLabel($this->i18n('sets_label_assets'));
