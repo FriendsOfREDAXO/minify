@@ -22,6 +22,7 @@ minify_sets_formcaption_edit = Edit set
 
 minify_sets_label_name = Name
 minify_sets_label_type = Type
+minify_sets_label_media = Media (CSS only)
 minify_sets_label_output = Output
 minify_sets_label_assets = Assets
 
