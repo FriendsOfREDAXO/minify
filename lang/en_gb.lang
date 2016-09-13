@@ -5,6 +5,7 @@ help_infotext = Dieses Addon ermöglicht das minimieren und bündeln von CSS und
 
 #subpage config
 minify_config = Configuration
+minify_config_debugmode = Debug mode?
 minify_config_minifyhtml = Minimize HTML?
 minify_config_action_save = Save settings
 minify_config_saved = Settings successfully saved!
