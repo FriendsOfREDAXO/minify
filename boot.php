@@ -14,34 +14,65 @@
 				if (!empty($sets)) {
 					$assets = explode(PHP_EOL, $sets[0]['assets']);
 					
-					$minify = new minify();
-					foreach($assets as $asset) {
-						$minify->addFile($asset, $match[2]);
-					}
-					
-					$data = $minify->minify($match[1], $match[2], $sets[0]['output']);
-					
-					switch ($match[1]) {
-						case 'css':
-							switch ($sets[0]['output']) {
-								case 'inline':
-									$content = str_replace($match[0], '<style '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>'.$data.'</style>', $content);
+					if ($this->getConfig('debugmode')) {
+						$assetsContent = '';
+						foreach($assets as $asset) {
+							switch ($match[1]) {
+								case 'css':
+									switch ($sets[0]['output']) {
+										case 'inline':
+											$assetsContent = '<style '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>'.rex_file::get(rex_path::absolute($asset)).'</style>';
+										break;
+										default:
+											$assetsContent .= '<link rel="stylesheet" href="'.$asset.'" '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>';
+										break;
+									}
 								break;
-								default:
-									$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'" '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>', $content);
-								break;
-							}
-						break;
-						case 'js':
-							switch ($sets[0]['output']) {
-								case 'inline':
-									$content = str_replace($match[0], '<script>'.$data.'</script>', $content);
-								break;
-								default:
-									$content = str_replace($match[0], '<script src="'.$data.'"></script>', $content);
+								case 'js':
+									switch ($sets[0]['output']) {
+										case 'inline':
+											$assetsContent .= '<script>'.rex_file::get(rex_path::absolute($asset)).'</script>';
+										break;
+										default:
+											$assetsContent .= '<script src="'.$asset.'"></script>';
+										break;
+									}
 								break;
 							}
-						break;
+						}
+						
+						$content = str_replace($match[0], $assetsContent, $content);
+						
+					} else {
+						$minify = new minify();
+						foreach($assets as $asset) {
+							$minify->addFile($asset, $match[2]);
+						}
+						
+						$data = $minify->minify($match[1], $match[2], $sets[0]['output']);
+						
+						switch ($match[1]) {
+							case 'css':
+								switch ($sets[0]['output']) {
+									case 'inline':
+										$content = str_replace($match[0], '<style '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>'.$data.'</style>', $content);
+									break;
+									default:
+										$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'" '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>', $content);
+									break;
+								}
+							break;
+							case 'js':
+								switch ($sets[0]['output']) {
+									case 'inline':
+										$content = str_replace($match[0], '<script>'.$data.'</script>', $content);
+									break;
+									default:
+										$content = str_replace($match[0], '<script src="'.$data.'"></script>', $content);
+									break;
+								}
+							break;
+						}
 					}
 					
 				} else {
