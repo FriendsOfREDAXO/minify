@@ -3,6 +3,7 @@
 	
 	if (rex_post('config-submit', 'boolean')) {
 		$this->setConfig(rex_post('config', [
+			['debugmode', 'bool'],
 			['minifyhtml', 'bool'],
 		]));
 		
@@ -14,6 +15,13 @@
 	$content .= '    <fieldset>';
 	
 	$formElements = [];
+	
+	//Start - debugmode
+		$n = [];
+		$n['label'] = '<label for="minify-config-minifyhtml">'.$this->i18n('config_debugmode').'</label>';
+		$n['field'] = '<input type="checkbox" id="minify-config-debugmode" name="config[debugmode]" value="1" '.($this->getConfig('debugmode') ? ' checked="checked"' : '').'>';
+		$formElements[] = $n;
+	//End - debugmode
 	
 	//Start - minify_html
 		$n = [];
