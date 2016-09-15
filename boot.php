@@ -7,7 +7,7 @@
 			foreach ($matches as $match) {
 				//Start - get set by name and type
 					$sql = rex_sql::factory();
-					$sets = $sql->getArray('SELECT `assets`, `media`, `output` FROM `'.rex::getTablePrefix().'minify_sets` WHERE type = ? AND name = ?', [$match[1], $match[2]]);
+					$sets = $sql->getArray('SELECT `assets`, `attributes`, `output` FROM `'.rex::getTablePrefix().'minify_sets` WHERE type = ? AND name = ?', [$match[1], $match[2]]);
 					unset($sql);
 				//End - get set by name and type
 				
@@ -21,20 +21,20 @@
 								case 'css':
 									switch ($sets[0]['output']) {
 										case 'inline':
-											$assetsContent = '<style '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>'.rex_file::get(rex_path::absolute($asset)).'</style>';
+											$assetsContent = '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get(rex_path::absolute($asset)).'</style>';
 										break;
 										default:
-											$assetsContent .= '<link rel="stylesheet" href="'.$asset.'" '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>';
+											$assetsContent .= '<link rel="stylesheet" href="'.$asset.'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
 										break;
 									}
 								break;
 								case 'js':
 									switch ($sets[0]['output']) {
 										case 'inline':
-											$assetsContent .= '<script>'.rex_file::get(rex_path::absolute($asset)).'</script>';
+											$assetsContent .= '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get(rex_path::absolute($asset)).'</script>';
 										break;
 										default:
-											$assetsContent .= '<script src="'.$asset.'"></script>';
+											$assetsContent .= '<script src="'.$asset.'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
 										break;
 									}
 								break;
@@ -55,20 +55,20 @@
 							case 'css':
 								switch ($sets[0]['output']) {
 									case 'inline':
-										$content = str_replace($match[0], '<style '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>'.$data.'</style>', $content);
+										$content = str_replace($match[0], '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.$data.'</style>', $content);
 									break;
 									default:
-										$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'" '.((!empty($sets[0]['media'])) ? 'media="'.$sets[0]['media'].'"' : '').'>', $content);
+										$content = str_replace($match[0], '<link rel="stylesheet" href="'.$data.'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>', $content);
 									break;
 								}
 							break;
 							case 'js':
 								switch ($sets[0]['output']) {
 									case 'inline':
-										$content = str_replace($match[0], '<script>'.$data.'</script>', $content);
+										$content = str_replace($match[0], '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.$data.'</script>', $content);
 									break;
 									default:
-										$content = str_replace($match[0], '<script src="'.$data.'"></script>', $content);
+										$content = str_replace($match[0], '<script src="'.$data.'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>', $content);
 									break;
 								}
 							break;
