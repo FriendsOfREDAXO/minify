@@ -54,10 +54,11 @@
 			$select->addOption('JS', 'js');
 		//End - add type-field
 		
-		//Start - add media-field
-			$field = $form->addTextField('media');
-			$field->setLabel($this->i18n('sets_label_media'));
-		//End - add media-field
+		//Start - add attributes-field
+			$field = $form->addTextAreaField('attributes');
+			$field->setLabel($this->i18n('sets_label_attributes'));
+			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_attributes_note').'</p></dd></dl>');
+		//End - add attributes-field
 		
 		//Start - add output-field
 			$field = $form->addSelectField('output');
@@ -72,6 +73,7 @@
 		//Start - add assets-field
 			$field = $form->addTextAreaField('assets');
 			$field->setLabel($this->i18n('sets_label_assets'));
+			$field = $form->addRawField('<dl class="rex-form-group form-group"><dt>&nbsp;</dt><dd><p class="help-block rex-note">'.$this->i18n('sets_label_assets_note').'</p></dd></dl>');
 		//End - add assets-field
 		
 		if ($func == 'edit') {
