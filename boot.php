@@ -19,22 +19,28 @@
 						foreach($assets as $asset) {
 							switch ($match[1]) {
 								case 'css':
+									if (minify::isSCSS($asset)) {
+										$asset = minify::compileFile($asset, 'scss');
+									} else {
+										$asset = rex_path::base(substr($asset,1));
+									}
+									
 									switch ($sets[0]['output']) {
 										case 'inline':
-											$assetsContent = '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get(rex_path::absolute($asset)).'</style>';
+											$assetsContent = '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</style>';
 										break;
 										default:
-											$assetsContent .= '<link rel="stylesheet" href="'.$asset.'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
+											$assetsContent .= '<link rel="stylesheet" href="'.minify::relativePath($asset).'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
 										break;
 									}
 								break;
 								case 'js':
 									switch ($sets[0]['output']) {
 										case 'inline':
-											$assetsContent .= '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get(rex_path::absolute($asset)).'</script>';
+											$assetsContent .= '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</script>';
 										break;
 										default:
-											$assetsContent .= '<script src="'.$asset.'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
+											$assetsContent .= '<script src="'.minify::relativePath($asset).'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
 										break;
 									}
 								break;
@@ -42,7 +48,6 @@
 						}
 						
 						$content = str_replace($match[0], $assetsContent, $content);
-						
 					} else {
 						$minify = new minify();
 						foreach($assets as $asset) {
@@ -74,7 +79,6 @@
 							break;
 						}
 					}
-					
 				} else {
 					$content = str_replace($match[0], '', $content);
 				}
