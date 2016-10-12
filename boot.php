@@ -35,6 +35,8 @@
 									}
 								break;
 								case 'js':
+									$asset = rex_path::base(substr($asset,1));
+									
 									switch ($sets[0]['output']) {
 										case 'inline':
 											$assetsContent .= '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</script>';
