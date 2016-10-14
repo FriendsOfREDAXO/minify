@@ -1,12 +1,12 @@
 minify_title = Minify
 
 #subpage help
-help_infotext = Dieses Addon ermöglicht das minimieren und bündeln von CSS und JS Dateien.<br><br>Dazu kann man unter dem Punkt 'Minify' beliebig viele Sets anlegen. Wichtig ist, dass der Name eines Sets pro Typ (CSS/JS) nur einmal vorkommen kann. In das Feld 'Assets' kommen zeilengetrennt die Pfade zu den einzelnen Dateien. Die Pfade müssen Redaxo-Root relativ sein.<br><br>Anschliessend wird ein Snippet à la "REX_MINIFY[type=css set=default]" generiert, welches im Template an beliebiger Stelle platziert werden kann. Das Snippet ist jeweils in der Set-Übersicht zu finden und kann von da kopiert werden. Das Snippet wird im Frontend automatisch durch einen entsprechenden HTML-Tag ersetzt.
+help_infotext = The Minify-Addon compresses and concatenates CSS and JavaScript files. <br><br>To do this, go to the 'Minify' page and create as many sets as you require. Make sure that set names are unique per file type (CSS/JS). Enter the paths to the files to be concatenated into the 'Assets' field, one path per row. The paths need to be relative to the Redaxo-Root.<br><br>After saving the set a code-snippet similar to "REX_MINIFY[type=css set=default]" will be generated, which can then be pasted in a template. You can find and copy the snippet-code for each set in the overview of the Addon. The snippet will be replaced with an appropriate HTML-tag in fronted templates once it is generated.
 
 #subpage config
 minify_config = Configuration
 minify_config_debugmode = Debug mode?
-minify_config_minifyhtml = Minimize HTML?
+minify_config_minifyhtml = Compress HTML?
 minify_config_action_save = Save settings
 minify_config_saved = Settings successfully saved!
 
@@ -31,4 +31,4 @@ minify_sets_label_assets_note = Lineseparated; Starts with a /.<br>Example: /ass
 
 #permissions
 perm_general_minify[] = Permissions for the Minify-Addon
-perm_general_minify[sets] = Permissions for the page 'Sets' of the Minify-Addons
+perm_general_minify[sets] = Permissions for the page 'Sets' of the Minify-Addon
