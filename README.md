@@ -1,4 +1,6 @@
 Minify
 ======
 
-Minifies html and combines/minfies css and js files
+Minifies HTML, combines/minfies CSS and JS files.
+
+![Screenshot](https://raw.githubusercontent.com/FriendsOfREDAXO/minify/assets/minify_01.png)
