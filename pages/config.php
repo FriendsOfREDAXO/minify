@@ -5,6 +5,7 @@
 		$this->setConfig(rex_post('config', [
 			['debugmode', 'bool'],
 			['minifyhtml', 'bool'],
+			['tinifykey', 'string'],
 		]));
 		
 		$content .= rex_view::info($this->i18n('config_saved'));
@@ -29,6 +30,13 @@
 		$n['field'] = '<input type="checkbox" id="minify-config-minifyhtml" name="config[minifyhtml]" value="1" '.($this->getConfig('minifyhtml') ? ' checked="checked"' : '').'>';
 		$formElements[] = $n;
 	//End - minify_html
+	
+	//Start - tinify_key
+		$n = [];
+		$n['label'] = '<label for="minify-config-tinifykey">'.$this->i18n('config_tinifykey').'</label>';
+		$n['field'] = '<input type="text" id="minify-config-tinifykey" name="config[tinifykey]" value="'.$this->getConfig('tinifykey').'"/>';
+		$formElements[] = $n;
+	//End - tinify_key
 	
 	$fragment = new rex_fragment();
 	$fragment->setVar('elements', $formElements, false);
