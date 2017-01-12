@@ -5,6 +5,7 @@
 		$this->setConfig(rex_post('config', [
 			['debugmode', 'bool'],
 			['minifyhtml', 'bool'],
+			['tinifyactive', 'bool'],
 			['tinifykey', 'string'],
 		]));
 		
@@ -30,6 +31,13 @@
 		$n['field'] = '<input type="checkbox" id="minify-config-minifyhtml" name="config[minifyhtml]" value="1" '.($this->getConfig('minifyhtml') ? ' checked="checked"' : '').'>';
 		$formElements[] = $n;
 	//End - minify_html
+	
+	//Start - tinify_active
+		$n = [];
+		$n['label'] = '<label for="minify-config-tinifyactive">'.$this->i18n('config_tinifyactive').'</label>';
+		$n['field'] = '<input type="checkbox" id="minify-config-tinifyactive" name="config[tinifyactive]" value="1" '.($this->getConfig('tinifyactive') ? ' checked="checked"' : '').'>';
+		$formElements[] = $n;
+	//End - tinify_active
 	
 	//Start - tinify_key
 		$n = [];
