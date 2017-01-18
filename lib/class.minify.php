@@ -1,9 +1,15 @@
 <?php
 	class minify {
 		private $files = [];
+		private $addon;
 		
 		public function __construct() {
+			if (!version_compare(rex::getProperty('version'), '5.3.0') >= 0) {
+				require_once(rex_path::addon(__CLASS__, 'vendor/minify/src/CSS.php'));
+				require_once(rex_path::addon(__CLASS__, 'vendor/minify/src/JS.php'));
+			}
 			
+			$this->addon = rex_addon::get(__CLASS__);
 		}
 		
 		public function addFile($file, $set = 'default') {
@@ -40,20 +46,24 @@
 		
 		public function minify($type, $set = 'default', $output = 'file') {
 			if (!in_array($type, ['css','js'])) {
-				return false;
+				die('Minifyerror: Unknown type "'.$type.'"');
 			}
 			
 			$minify = false;
 			$oldCache = [];
 			$newCache = [];
 			
-			if (file_exists(rex_path::addonAssets(__CLASS__, 'cache'.'/'.$type.'_'.$set.'.json'))) {
-				$string = file_get_contents(rex_path::addonAssets(__CLASS__, 'cache'.'/'.$type.'_'.$set.'.json'));
+			if (file_exists(rex_path::addonCache(__CLASS__, $type.'_'.$set.'.json'))) {
+				$string = file_get_contents(rex_path::addonCache(__CLASS__, $type.'_'.$set.'.json'));
 				$oldCache = json_decode($string, true);
 			}
 			
 			if (!empty($this->files[$set])) {
 				foreach ($this->files[$set] as $file) {
+					if (!file_exists(trim(rex_path::base(substr($file,1))))) {
+						die('Minifyerror: File "'.$file.'" does not exists');
+					}
+					
 					//Start - get timestamp of the file
 						$newCache[$file] = filemtime(trim(rex_path::base(substr($file,1))));
 					//End - get timestamp of the file
@@ -74,19 +84,20 @@
 				//Ebd - save path into cachefile
 				
 				if ($minify) {
-					$path = rex_path::addonAssets(__CLASS__, 'cache'.'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
-					$newCache['path'] = $path;
-					
 					switch($type) {
 						case 'css':
+							$path = rex_path::base(substr($this->addon->getConfig('pathcss'),1).'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
 							$minifier = new MatthiasMullie\Minify\CSS();
 						break;
 						case 'js':
+							$path = rex_path::base(substr($this->addon->getConfig('pathjs'),1).'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
 							$minifier = new MatthiasMullie\Minify\JS();
 						break;
 					}
 					
-					if (!rex_file::put(rex_path::addonAssets(__CLASS__, 'cache'.'/'.$type.'_'.$set.'.json'), json_encode($newCache))) {
+					$newCache['path'] = $path;
+					
+					if (!rex_file::put(rex_path::addonCache(__CLASS__, $type.'_'.$set.'.json'), json_encode($newCache))) {
 						echo 'Cachefile für '.$type.' konnte nicht geschrieben werden!';
 					}
 					
