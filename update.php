@@ -13,4 +13,12 @@
 	rex_sql_table::get(rex::getTable('minify_sets'))
 	->removeColumn('media')
 	->alter();
+	
+	if (!$this->hasConfig('pathcss')) {
+		$this->setConfig(['pathcss' => '/assets/addons/minify/cache']);
+	}
+	
+	if (!$this->hasConfig('pathjs')) {
+		$this->setConfig(['pathjs' => '/assets/addons/minify/cache']);
+	}
 ?>
