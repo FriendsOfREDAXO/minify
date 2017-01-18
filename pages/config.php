@@ -7,6 +7,8 @@
 			['minifyhtml', 'bool'],
 			['tinifyactive', 'bool'],
 			['tinifykey', 'string'],
+			['pathcss', 'string'],
+			['pathjs', 'string'],
 		]));
 		
 		$content .= rex_view::info($this->i18n('config_saved'));
@@ -45,6 +47,20 @@
 		$n['field'] = '<input type="text" id="minify-config-tinifykey" name="config[tinifykey]" value="'.$this->getConfig('tinifykey').'"/>';
 		$formElements[] = $n;
 	//End - tinify_key
+	
+	//Start - path_css
+		$n = [];
+		$n['label'] = '<label for="minify-config-pathcss">'.$this->i18n('config_pathcss').'</label>';
+		$n['field'] = '<input type="text" id="minify-config-pathcss" name="config[pathcss]" value="'.$this->getConfig('pathcss').'"/>';
+		$formElements[] = $n;
+	//End - path_css
+	
+	//Start - path_js
+		$n = [];
+		$n['label'] = '<label for="minify-config-pathjs">'.$this->i18n('config_pathjs').'</label>';
+		$n['field'] = '<input type="text" id="minify-config-pathjs" name="config[pathjs]" value="'.$this->getConfig('pathjs').'"/>';
+		$formElements[] = $n;
+	//End - path_js
 	
 	$fragment = new rex_fragment();
 	$fragment->setVar('elements', $formElements, false);
