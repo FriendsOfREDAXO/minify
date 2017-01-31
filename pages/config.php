@@ -22,7 +22,7 @@
 	
 	//Start - debugmode
 		$n = [];
-		$n['label'] = '<label for="minify-config-minifyhtml">'.$this->i18n('config_debugmode').'</label>';
+		$n['label'] = '<label for="minify-config-debugmode">'.$this->i18n('config_debugmode').'</label>';
 		$n['field'] = '<input type="checkbox" id="minify-config-debugmode" name="config[debugmode]" value="1" '.($this->getConfig('debugmode') ? ' checked="checked"' : '').'>';
 		$formElements[] = $n;
 	//End - debugmode
