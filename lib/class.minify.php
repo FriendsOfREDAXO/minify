@@ -53,8 +53,8 @@
 			$oldCache = [];
 			$newCache = [];
 			
-			if (file_exists(rex_path::addonCache(__CLASS__, $type.'_'.$set.'.json'))) {
-				$string = file_get_contents(rex_path::addonCache(__CLASS__, $type.'_'.$set.'.json'));
+			if (file_exists(rex_path::addonCache(__CLASS__, $type.'_'.rex_string::normalize($set).'.json'))) {
+				$string = file_get_contents(rex_path::addonCache(__CLASS__, $type.'_'.rex_string::normalize($set).'.json'));
 				$oldCache = json_decode($string, true);
 			}
 			
@@ -86,18 +86,18 @@
 				if ($minify) {
 					switch($type) {
 						case 'css':
-							$path = rex_path::base(substr($this->addon->getConfig('pathcss'),1).'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
+							$path = rex_path::base(substr($this->addon->getConfig('pathcss'),1).'/bundled.'.rex_string::normalize($set).'.'.$type);
 							$minifier = new MatthiasMullie\Minify\CSS();
 						break;
 						case 'js':
-							$path = rex_path::base(substr($this->addon->getConfig('pathjs'),1).'/'.md5($set.'_'.implode(',',$newCache).'_'.time()).'.'.$type);
+							$path = rex_path::base(substr($this->addon->getConfig('pathjs'),1).'/bundled.'.rex_string::normalize($set).'.'.$type);
 							$minifier = new MatthiasMullie\Minify\JS();
 						break;
 					}
 					
 					$newCache['path'] = $path;
 					
-					if (!rex_file::put(rex_path::addonCache(__CLASS__, $type.'_'.$set.'.json'), json_encode($newCache))) {
+					if (!rex_file::put(rex_path::addonCache(__CLASS__, $type.'_'.rex_string::normalize($set).'.json'), json_encode($newCache))) {
 						echo 'Cachefile für '.$type.' konnte nicht geschrieben werden!';
 					}
 					
