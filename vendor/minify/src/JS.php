@@ -222,12 +222,7 @@ class JS extends Minify
             return $placeholder;
         };
 
-        // crazy regex explained: characters inside /.../ delimiters can be:
-        // * a /, as long as it's escaped with a \
-        //   * but that \ can not in itself be escaped
-        //   * so we need an uneven amount of \ if we have a /
-        // * any other character
-        $pattern = '\/([^\/]|(?<!\\\\)(\\\\\\\\)*\\\\\/)+\/[gimy]*(?![0-9a-zA-Z\/])';
+        $pattern = '\/.+?(?<!\\\\)(\\\\\\\\)*\/[gimy]*(?![0-9a-zA-Z\/])';
 
         // a regular expression can only be followed by a few operators or some
         // of the RegExp methods (a `\` followed by a variable or value is
@@ -328,14 +323,15 @@ class JS extends Minify
         /*
          * Next, we'll be removing all semicolons where ASI kicks in.
          * for-loops however, can have an empty body (ending in only a
-         * semicolon), like: `for(i=1;i<3;i++);`
+         * semicolon), like: `for(i=1;i<3;i++);`, of `for(i in list);`
          * Here, nothing happens during the loop; it's just used to keep
          * increasing `i`. With that ; omitted, the next line would be expected
          * to be the for-loop's body...
          * I'm going to double that semicolon (if any) so after the next line,
          * which strips semicolons here & there, we're still left with this one.
          */
-        $content = preg_replace('/(for\([^;]*;[^;]*;[^;\{]*\));(\}|$)/s', '\\1;;\\2', $content);
+        $content = preg_replace('/(for\([^;\{]*;[^;\{]*;[^;\{]*\));(\}|$)/s', '\\1;;\\2', $content);
+        $content = preg_replace('/(for\([^;\{]+\s+in\s+[^;\{]+\));(\}|$)/s', '\\1;;\\2', $content);
 
         /*
          * We also can't strip empty else-statements. Even though they're
