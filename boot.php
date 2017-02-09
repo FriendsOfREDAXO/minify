@@ -1,6 +1,18 @@
 <?php
 	if (!rex::isBackend()) {
 		rex_extension::register('OUTPUT_FILTER', function(rex_extension_point $ep) {
+			//Start - get php.ini settings
+				$currentTimeLimit = ini_get('max_execution_time');
+				$currentBacktrackLimit = ini_get('pcre.backtrack_limit');
+				$currentRecursionLimit = ini_get('pcre.recursion_limit');
+			//End - get php.ini settings
+			
+			//Start - set new php.ini-settings
+				ini_set('max_execution_time', 120);
+				ini_set('pcre.backtrack_limit', 1000000);
+				ini_set('pcre.recursion_limit', 1000000);
+			//End - set new php.ini-settings
+			
 			$content = $ep->getSubject();
 			preg_match_all("/REX_MINIFY\[type=(.*)\ set=(.*)\]/", $content, $matches, PREG_SET_ORDER);
 			
@@ -91,6 +103,12 @@
 					$content = preg_replace(['/<!--(.*)-->/Uis',"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
 				}
 			//End - minify html
+			
+			//Start - set old php.ini-settings
+				ini_set('max_execution_time', $currentTimeLimit);
+				ini_set('pcre.backtrack_limit', $currentBacktrackLimit);
+				ini_set('pcre.recursion_limit', $currentRecursionLimit);
+			//End - set old php.ini-settings
 			
 			$ep->setSubject($content);
 		});
