@@ -3,6 +3,8 @@
 	->ensureColumn(new rex_sql_column('media', 'text'))
 	->ensureColumn(new rex_sql_column('attributes', 'text'))
 	->ensureColumn(new rex_sql_column('output', 'varchar(30)'))
+	->ensureColumn(new rex_sql_column('minimize', 'ENUM(\'no\',\'yes\')'))
+	->ensureColumn(new rex_sql_column('ignore_browsercache', 'ENUM(\'no\',\'yes\')'))
 	->alter();
 	
 	$sql = rex_sql::factory();
