@@ -2,7 +2,6 @@ minify_title = Minify
 
 #subpage config
 minify_config = Konfiguration
-minify_config_debugmode = Debug Modus?
 minify_config_minifyhtml = HTML minimizen?
 minify_config_tinifyactive = Tinify Effekt aktiv?
 minify_config_tinifykey = Tinify Key<br><i>https://tinypng.com/developers</i>
@@ -24,6 +23,8 @@ minify_sets_formcaption_edit = Set editieren
 
 minify_sets_label_name = Name
 minify_sets_label_type = Typ
+minify_sets_label_minimize = Minimieren?
+minify_sets_label_ignore_browsercache = Browsercache umgehen?
 minify_sets_label_output = Ausgabe
 minify_sets_label_attributes = Attribute
 minify_sets_label_attributes_note = Zeilengetrennt<br>Beispiel: media="print"
