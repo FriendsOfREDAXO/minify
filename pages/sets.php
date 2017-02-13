@@ -54,6 +54,27 @@
 			$select->addOption('JS', 'js');
 		//End - add type-field
 		
+		//Start - add minimize-field
+			$field = $form->addSelectField('minimize');
+			$field->setLabel($this->i18n('sets_label_minimize'));
+			
+			$select = $field->getSelect();
+			$select->setSize(1);
+			$select->addOption('Nein', 'no');
+			$select->addOption('Ja', 'yes');
+			
+		//End - add minimize-field
+		
+		//Start - add ignore_browsercache-field
+			$field = $form->addSelectField('ignore_browsercache');
+			$field->setLabel($this->i18n('sets_label_ignore_browsercache'));
+			
+			$select = $field->getSelect();
+			$select->setSize(1);
+			$select->addOption('Nein', 'no');
+			$select->addOption('Ja', 'yes');
+		//End - add ignore_browsercache-field
+		
 		//Start - add attributes-field
 			$field = $form->addTextAreaField('attributes');
 			$field->setLabel($this->i18n('sets_label_attributes'));
