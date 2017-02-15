@@ -11,18 +11,20 @@
 				
 				$this->media->asImage();
 				
+				$format = $this->media->getFormat();
+
 				//Start - get imageSource
-					ob_start();
-					if ($this->image['format'] == 'jpg' || $this->image['format'] == 'jpeg') {
-						$this->image['quality'] = rex_config::get('media_manager', 'jpg_quality', 80);
-						imagejpeg($this->image['src'], null, $this->image['quality']);
-					} elseif ($this->image['format'] == 'png') {
-						imagepng($this->image['src']);
-					} else {
-						return;
-					}
-					$src = ob_get_contents();
-					ob_end_clean();
+				ob_start();
+				if ($format == 'jpg' || $format == 'jpeg') {
+					imagejpeg($this->media->getImage(), null, rex_config::get('media_manager', 'jpg_quality', 80));
+				}
+				elseif ($format == 'png') {
+					imagepng($this->media->getImage());
+				}
+				else {
+					return;
+				}
+				ob_end_clean();
 				//End - get imageSource
 				
 				$source = \Tinify\fromBuffer($src);
