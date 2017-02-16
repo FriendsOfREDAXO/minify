@@ -9,8 +9,14 @@
 			['tinifykey', 'string'],
 			['pathcss', 'string'],
 			['pathjs', 'string'],
+			['php_optim_png', 'string'],
+			['php_optim_gif', 'string'],
+			['php_optim_jpeg', 'string'],
+			['php_optim_png_path', 'string'],
+			['php_optim_gif_path', 'string'],
+			['php_optim_jpeg_path', 'string'],
 		]));
-		
+
 		$content .= rex_view::info($this->i18n('config_saved'));
 	}
 
@@ -40,7 +46,64 @@
 		$n['field'] = '<input type="text" id="minify-config-tinifykey" name="config[tinifykey]" value="'.$this->getConfig('tinifykey').'"/>';
 		$formElements[] = $n;
 	//End - tinify_key
-	
+
+	//Start - php_optim_gif
+		$n = [];
+		$options = ['<option value="">-- '. $this->i18n('config_no_php_optim_processor') .' --</option>'];
+		$files = glob(__DIR__ .'/../vendor/PHPImageOptim/Tools/Gif/*.php');
+
+		foreach ($files as $file) {
+			$name = basename($file);
+			$options[] = '<option value="'. $name .'" '. ($this->getConfig('php_optim_gif') == $name ? 'selected="selected"' : '') .'>'. substr($name, 0, -4) .'</option>';
+		}
+		$n['label'] = '<label>'.$this->i18n('config_php_optim_gif').'</label>';
+		$n['field'] = '<select name="config[php_optim_gif]">'. implode('', $options) .'</select>';
+		$formElements[] = $n;
+
+		$n = [];
+		$n['label'] = '<label for="minify-config-php_optim_gif_path">'. strtr($this->i18n('config_php_optim_path'), ['%s' => strtolower(substr($name, 0, -4))]) .'</label>';
+		$n['field'] = '<input type="text" id="minify-config-php_optim_gif_path" name="config[php_optim_gif_path]" value="'.$this->getConfig('php_optim_gif_path').'"/>';
+		$formElements[] = $n;
+	//End - php_optim_gif
+
+	//Start - php_optim_png
+		$n = [];
+		$options = ['<option value="">-- '. $this->i18n('config_no_php_optim_processor') .' --</option>'];
+		$files = glob(__DIR__ .'/../vendor/PHPImageOptim/Tools/Png/*.php');
+
+		foreach ($files as $file) {
+			$name = basename($file);
+			$options[] = '<option value="'. $name .'" '. ($this->getConfig('php_optim_png') == $name ? 'selected="selected"' : '') .'>'. substr($name, 0, -4) .'</option>';
+		}
+		$n['label'] = '<label>'.$this->i18n('config_php_optim_png').'</label>';
+		$n['field'] = '<select name="config[php_optim_png]">'. implode('', $options) .'</select>';
+		$formElements[] = $n;
+
+		$n = [];
+		$n['label'] = '<label for="minify-config-php_optim_png_path">'. strtr($this->i18n('config_php_optim_path'), ['%s' => strtolower(substr($name, 0, -4))]) .'</label>';
+		$n['field'] = '<input type="text" id="minify-config-php_optim_png_path" name="config[php_optim_png_path]" value="'.$this->getConfig('php_optim_png_path').'"/>';
+		$formElements[] = $n;
+	//End - php_optim_png
+
+	//Start - php_optim_jpeg
+		$n = [];
+		$options = ['<option value="">-- '. $this->i18n('config_no_php_optim_processor') .' --</option>'];
+		$files = glob(__DIR__ .'/../vendor/PHPImageOptim/Tools/Jpeg/*.php');
+
+		foreach ($files as $file) {
+			$name = basename($file);
+			$options[] = '<option value="'. $name .'" '. ($this->getConfig('php_optim_jpeg') == $name ? 'selected="selected"' : '') .'>'. substr($name, 0, -4) .'</option>';
+		}
+		$n['label'] = '<label>'.$this->i18n('config_php_optim_jpeg').'</label>';
+		$n['field'] = '<select name="config[php_optim_jpeg]">'. implode('', $options) .'</select>';
+		$formElements[] = $n;
+
+		$n = [];
+		$n['label'] = '<label for="minify-config-php_optim_jpeg_path">'. strtr($this->i18n('config_php_optim_path'), ['%s' => strtolower(substr($name, 0, -4))]) .'</label>';
+		$n['field'] = '<input type="text" id="minify-config-php_optim_jpeg_path" name="config[php_optim_jpeg_path]" value="'.$this->getConfig('php_optim_jpeg_path').'"/>';
+		$formElements[] = $n;
+	//End - php_optim_jpeg
+
 	//Start - path_css
 		$n = [];
 		$n['label'] = '<label for="minify-config-pathcss">'.$this->i18n('config_pathcss').'</label>';
