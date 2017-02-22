@@ -22,7 +22,7 @@
 				//End - get set by name and type
 				
 				if (!empty($sets)) {
-					$assets = explode(PHP_EOL, $sets[0]['assets']);
+					$assets = explode(PHP_EOL, trim($sets[0]['assets']));
 					
 					if ($sets[0]['minimize'] == 'no') {
 						$assetsContent = '';
