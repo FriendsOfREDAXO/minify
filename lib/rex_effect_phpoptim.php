@@ -14,7 +14,6 @@ class rex_effect_phpoptim extends rex_effect_abstract
             return;
         }
 
-
         include_once __DIR__ . '/../vendor/PHPImageOptim/Tools/ToolsInterface.php';
         include_once __DIR__ . '/../vendor/PHPImageOptim/Tools/Common.php';
         include_once __DIR__ . '/../vendor/PHPImageOptim/Tools/' . ucfirst($format) . '/' . $processor;
@@ -28,7 +27,7 @@ class rex_effect_phpoptim extends rex_effect_abstract
                 imagejpeg($gdimage, $filepath, rex_config::get('media_manager', 'jpg_quality', 80));
                 break;
             case 'png':
-                imagepng($gdimage, $filepath, 0);
+                imagepng($gdimage, $filepath, 9);
                 break;
             case 'gif':
                 imagegif($gdimage, $filepath);
@@ -53,5 +52,3 @@ class rex_effect_phpoptim extends rex_effect_abstract
         }
     }
 }
-
-?>

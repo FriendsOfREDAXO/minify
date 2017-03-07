@@ -114,14 +114,23 @@
 	} else {
 		if (rex_addon::get('media_manager')->isAvailable()) {
 			rex_media_manager::addEffect('rex_effect_tinify');
-			rex_media_manager::addEffect('rex_effect_phpoptim');
 		}
 	}
 
 	if ($auto_optim) {
 		\rex_extension::register('MEDIA_MANAGER_FILTERSET', function ($Ep) {
 			$subject = $Ep->getSubject();
-			$subject[] = ['effect' => 'phpoptim', 'params' => []];
+			$doAdd   = true;
+
+			foreach ($subject as $s) {
+                if ($s['effect'] == 'no_phpoptim') {
+                    $doAdd = false;
+                    break;
+                }
+            }
+            if ($doAdd) {
+			    $subject[] = ['effect' => 'phpoptim', 'params' => []];
+            }
 			return $subject;
 		});
 	}
