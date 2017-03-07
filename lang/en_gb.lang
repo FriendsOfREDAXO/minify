@@ -4,9 +4,9 @@ minify_title = Minify
 minify_config = Configuration
 minify_config_minifyhtml = Minimize HTML?
 minify_config_tinifyactive = Tinify effect active?
-minify_config_tinifykey = Tinify Key<br><i>https://tinypng.com/developers</i>
-minify_config_pathcss = Path for generated CSS-Dateien<br><i>DocumentRoot-relative, without Trailingslash</i>
-minify_config_pathjs = Path for generated JS-Dateien<br><i>DocumentRoot-relative, without Trailingslash</i>
+minify_config_tinifykey = Tinify key<br><i>https://tinypng.com/developers</i>
+minify_config_pathcss = Path for generated CSS files<br><i>relative to document root, without trailing slashes</i>
+minify_config_pathjs = Path for generated JS files<br><i>relative to document root, without trailing slashes
 minify_config_action_save = Save settings
 minify_config_saved = Settings successfully saved!
 
@@ -23,13 +23,13 @@ minify_sets_formcaption_edit = Edit set
 
 minify_sets_label_name = Name
 minify_sets_label_type = Type
-minify_sets_label_minimize = Minimieren?
-minify_sets_label_ignore_browsercache = Browsercache umgehen?
+minify_sets_label_minimize = Minimize?
+minify_sets_label_ignore_browsercache = Ignore browser cache?
 minify_sets_label_output = Output
 minify_sets_label_attributes = Attributes
-minify_sets_label_attributes_note = Lineseparated<br>Example: media="print"
+minify_sets_label_attributes_note = One entry per line<br>example: media="print"
 minify_sets_label_assets = Assets
-minify_sets_label_assets_note = Lineseparated; Starts with a /.<br>Example: /assets/css/styles.css
+minify_sets_label_assets_note = One entry per line; starts with a "/".<br>example: /assets/css/styles.css
 
 #permissions
 perm_general_minify[] = Permissions for the Minify-Addon
