@@ -14,35 +14,43 @@ class rex_effect_phpoptim extends rex_effect_abstract
             return;
         }
 
+
         include_once __DIR__ . '/../vendor/PHPImageOptim/Tools/ToolsInterface.php';
         include_once __DIR__ . '/../vendor/PHPImageOptim/Tools/Common.php';
         include_once __DIR__ . '/../vendor/PHPImageOptim/Tools/' . ucfirst($format) . '/' . $processor;
         include_once __DIR__ . '/../vendor/PHPImageOptim/PHPImageOptim.php';
 
         $filepath = rex_path::cache('phpoptim.tmp');
+        $gdimage  = $this->media->getImage();
 
         switch ($format) {
             case 'jpeg':
-                imagejpeg($this->media->getImage(), $filepath, rex_config::get('media_manager', 'jpg_quality', 80));
+                imagejpeg($gdimage, $filepath, rex_config::get('media_manager', 'jpg_quality', 80));
                 break;
             case 'png':
-                imagepng($this->media->getImage(), $filepath, rex_config::get('media_manager', 'jpg_quality', 80));
+                imagepng($gdimage, $filepath, 0);
                 break;
             case 'gif':
-                imagegif($this->media->getImage(), $filepath);
+                imagegif($gdimage, $filepath);
                 break;
         }
 
-        $class     = "\\PHPImageOptim\\Tools\\Jpeg\\" . substr($processor, 0, -4);
+        $class     = "\\PHPImageOptim\\Tools\\" . ucfirst($format) . "\\" . substr($processor, 0, -4);
         $Processor = new $class();
         $Processor->setBinaryPath($binary_path);
 
-        $Optim = new \PHPImageOptim\PHPImageOptim();
-        $Optim->setImage($filepath);
-        $Optim->chainCommand($Processor);
-        $Optim->optimise();
+        try {
+            $Optim = new \PHPImageOptim\PHPImageOptim();
+            $Optim->setImage($filepath);
+            $Optim->chainCommand($Processor);
+            $Optim->optimise();
 
-        $this->media->setImage(imagecreatefromstring(file_get_contents($filepath)));
+            $media_content = file_get_contents($filepath);
+            $this->media->setMediaContent($media_content);
+            $this->media->setImage(imagecreatefromstring($media_content));
+        }
+        catch (Exception $ex) {
+        }
     }
 }
 
