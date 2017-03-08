@@ -10,7 +10,7 @@ class rex_effect_phpoptim extends rex_effect_abstract
         $processor   = rex_addon::get('minify')->getConfig('php_optim_' . $format);
         $binary_path = rex_addon::get('minify')->getConfig('php_optim_' . $format . '_path');
 
-        if (!strlen($processor) || !strlen($binary_path)) {
+        if (!strlen($processor) || !strlen($binary_path) || !method_exists($this->media, 'setMediaContent')) {
             return;
         }
 
