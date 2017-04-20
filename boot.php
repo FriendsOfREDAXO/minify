@@ -100,7 +100,13 @@
 
 			//Start - minify html
 				if ($this->getConfig('minifyhtml')) {
-					$content = preg_replace(['/<!--(.*)-->/Uis',"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
+					if(rex_addon::get("search_it")->isInstalled())
+						$regex = '/<!--((?!search_it)[\s\S])*?-->/is';
+					else
+						$regex = '/<!--(.*)-->/Uis';
+
+					$regex = rex_extension::registerPoint(new rex_extension_point('MINIFY_HTML_REGEX',$regex));
+					$content = preg_replace([$regex,"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
 				}
 			//End - minify html
 
