@@ -100,7 +100,7 @@
 
 			//Start - minify html
 				if ($this->getConfig('minifyhtml')) {
-					if(rex_addon::get("search_it")->isInstalled())
+					if(rex_addon::get("search_it")->isAvailable())
 						$regex = '/<!--((?!search_it)[\s\S])*?-->/is';
 					else
 						$regex = '/<!--(.*)-->/Uis';
