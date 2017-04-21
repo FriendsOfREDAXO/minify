@@ -15,6 +15,7 @@
 			['php_optim_png_path', 'string'],
 			['php_optim_gif_path', 'string'],
 			['php_optim_jpeg_path', 'string'],
+			['auto_optim', 'bool'],
 		]));
 
 		$content .= rex_view::info($this->i18n('config_saved'));
@@ -103,6 +104,13 @@
 		$n['field'] = '<input type="text" id="minify-config-php_optim_jpeg_path" name="config[php_optim_jpeg_path]" value="'.$this->getConfig('php_optim_jpeg_path').'"/>';
 		$formElements[] = $n;
 	//End - php_optim_jpeg
+
+	//Start - php_auto_optim
+	$n = [];
+	$n['label'] = '<label for="minify-config-php_auto_optim">'.$this->i18n('config_php_auto_optim').'</label>';
+	$n['field'] = '<input type="checkbox" id="minify-config-php_auto_optim" name="config[php_auto_optim]" value="1" '.($this->getConfig('php_auto_optim') ? ' checked="checked"' : '').'>';
+	$formElements[] = $n;
+	//End - php_auto_optim
 
 	//Start - path_css
 		$n = [];
