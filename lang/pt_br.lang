@@ -1,0 +1,41 @@
+minify_title = Reduzir
+
+#subpage config
+minify_config = Configuração
+minify_config_minifyhtml = Reduzir HTML?
+minify_config_tinifyactive = ativar efeito Tinify?
+minify_config_no_php_optim_processor = Sem processador
+config_php_optim_path = Caminho para o binário <br><i>ex.: /usr/bin/%s</i>
+minify_config_php_optim_gif = PHPOptim processador para GIFs
+minify_config_php_optim_png = PHPOptim processador para PNGs
+minify_config_php_optim_jpeg = PHPOptim processador para JPEGs
+minify_config_tinifykey = Chave Tinify<br><i>https://tinypng.com/developers</i>
+minify_config_pathcss = Caminho para arquivos CSS gerados <br> <i> em relação à raiz do documento, sem barras oblíquas </ i>
+minify_config_pathjs = Caminho para arquivos JS gerados <br> <i> em relação à raiz do documento, sem barras finais
+minify_config_action_save = Salvar configurações
+minify_config_saved = Configurações salvas com sucesso!
+
+#subpage sets
+minify_sets = Sets
+minify_sets_norowsmessage = Nenhum set foi encontrado!
+
+minify_sets_column_name = Nome
+minify_sets_column_type = Tipo
+minify_sets_column_snippet = Snippet
+
+minify_sets_formcaption_add = Adicionar set
+minify_sets_formcaption_edit = Editar set
+
+minify_sets_label_name = Nome
+minify_sets_label_type = Tipo
+minify_sets_label_minimize = Minimizar?
+minify_sets_label_ignore_browsercache = Ignorar cachê do navegador?
+minify_sets_label_output = Saída
+minify_sets_label_attributes = Atributos
+minify_sets_label_attributes_note = Uma entrada por linha<br>example: media="print"
+minify_sets_label_assets = Ativos
+minify_sets_label_assets_note = Uma entrada por linha; Começa com um "/".<br>example: /ativos/css/styles.css
+
+#permissions
+perm_general_minify[] = Permissões para o Minify-Addon
+perm_general_minify[sets] = Permissões para a página 'Sets' do Minify-Addons
