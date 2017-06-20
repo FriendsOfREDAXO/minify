@@ -114,10 +114,5 @@
 			
 			$ep->setSubject($content);
 		});
-	} else {
-		if (rex_addon::get('media_manager')->isAvailable()) {
-			rex_media_manager::addEffect('rex_effect_tinify');
-			rex_media_manager::addEffect('rex_effect_phpoptim');
-		}
 	}
 ?>
