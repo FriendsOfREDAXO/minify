@@ -5,10 +5,11 @@
 		$this->setConfig(rex_post('config', [
 			['debugmode', 'bool'],
 			['minifyhtml', 'bool'],
-			['tinifyactive', 'bool'],
-			['tinifykey', 'string'],
 			['pathcss', 'string'],
 			['pathjs', 'string'],
+			['templates', 'array[int]'],
+			['tinifyactive', 'bool'],
+			['tinifykey', 'string'],
 			['php_optim_png', 'string'],
 			['php_optim_gif', 'string'],
 			['php_optim_jpeg', 'string'],
