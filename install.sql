@@ -1,6 +1,4 @@
-DROP TABLE IF EXISTS `%TABLE_PREFIX%minify_sets`;
-
-CREATE TABLE `%TABLE_PREFIX%minify_sets` (
+CREATE TABLE IF NOT EXISTS `%TABLE_PREFIX%minify_sets` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(30) NOT NULL DEFAULT '',
   `type` varchar(30) NOT NULL DEFAULT '',

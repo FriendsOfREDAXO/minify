@@ -1,1 +1,1 @@
-DROP TABLE `%TABLE_PREFIX%minify_sets`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%minify_sets`;
