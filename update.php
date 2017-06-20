@@ -5,7 +5,6 @@
 	->ensureColumn(new rex_sql_column('output', 'varchar(30)'))
 	->ensureColumn(new rex_sql_column('minimize', 'ENUM(\'no\',\'yes\')'))
 	->ensureColumn(new rex_sql_column('ignore_browsercache', 'ENUM(\'no\',\'yes\')'))
-	->ensureColumn(new rex_sql_column('templates', 'text'))
 	->alter();
 	
 	$sql = rex_sql::factory();
