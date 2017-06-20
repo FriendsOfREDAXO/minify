@@ -8,7 +8,8 @@ CREATE TABLE `%TABLE_PREFIX%minify_sets` (
   `ignore_browsercache` enum('no','yes') NOT NULL DEFAULT 'no',
   `attributes` text NOT NULL DEFAULT '',
   `output` varchar(30) NOT NULL DEFAULT '',
-  `assets` text NOT NULL DEFAULT ''
+  `assets` text NOT NULL DEFAULT '',
+  `templates` text NOT NULL DEFAULT '',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `%TABLE_PREFIX%minify_sets`

@@ -32,6 +32,35 @@
 		$n['field'] = '<input type="checkbox" id="minify-config-minifyhtml" name="config[minifyhtml]" value="1" '.($this->getConfig('minifyhtml') ? ' checked="checked"' : '').'>';
 		$formElements[] = $n;
 	//End - minify_html
+
+	//Start - path_css
+		$n = [];
+		$n['label'] = '<label for="minify-config-pathcss">'.$this->i18n('config_pathcss').'</label>';
+		$n['field'] = '<input type="text" id="minify-config-pathcss" name="config[pathcss]" value="'.$this->getConfig('pathcss').'"/>';
+		$formElements[] = $n;
+	//End - path_css
+	
+	//Start - path_js
+		$n = [];
+		$n['label'] = '<label for="minify-config-pathjs">'.$this->i18n('config_pathjs').'</label>';
+		$n['field'] = '<input type="text" id="minify-config-pathjs" name="config[pathjs]" value="'.$this->getConfig('pathjs').'"/>';
+		$formElements[] = $n;
+	//End - path_js
+	
+	//Start - templates
+		$n = [];
+		$n['label'] = '<label for="minify-config-templates">' . $this->i18n('config_templates') . '</label>';
+		$select = new rex_select();
+		$select->setId('minify-config-templates');
+		$select->setMultiple();
+		$select->setSize(10);
+		$select->setAttribute('class', 'form-control');
+		$select->setName('config[templates][]');
+		$select->addSqlOptions('SELECT `name`, `id` FROM `' . rex::getTablePrefix() . 'template` ORDER BY `name` ASC');
+		$select->setSelected($this->getConfig('templates'));
+		$n['field'] = $select->get();
+		$formElements[] = $n;
+	//End - templates
 	
 	//Start - tinify_active
 		$n = [];
@@ -103,20 +132,6 @@
 		$n['field'] = '<input type="text" id="minify-config-php_optim_jpeg_path" name="config[php_optim_jpeg_path]" value="'.$this->getConfig('php_optim_jpeg_path').'"/>';
 		$formElements[] = $n;
 	//End - php_optim_jpeg
-
-	//Start - path_css
-		$n = [];
-		$n['label'] = '<label for="minify-config-pathcss">'.$this->i18n('config_pathcss').'</label>';
-		$n['field'] = '<input type="text" id="minify-config-pathcss" name="config[pathcss]" value="'.$this->getConfig('pathcss').'"/>';
-		$formElements[] = $n;
-	//End - path_css
-	
-	//Start - path_js
-		$n = [];
-		$n['label'] = '<label for="minify-config-pathjs">'.$this->i18n('config_pathjs').'</label>';
-		$n['field'] = '<input type="text" id="minify-config-pathjs" name="config[pathjs]" value="'.$this->getConfig('pathjs').'"/>';
-		$formElements[] = $n;
-	//End - path_js
 	
 	$fragment = new rex_fragment();
 	$fragment->setVar('elements', $formElements, false);

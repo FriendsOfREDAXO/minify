@@ -3,6 +3,9 @@ minify_title = Minify
 #subpage config
 minify_config = Configuration
 minify_config_minifyhtml = Minimize HTML?
+minify_config_pathcss = Path for generated CSS files<br><i>relative to document root, without trailing slashes</i>
+minify_config_pathjs = Path for generated JS files<br><i>relative to document root, without trailing slashes</i>
+minify_config_templates = Whitelist templates
 minify_config_tinifyactive = Tinify effect active?
 minify_config_no_php_optim_processor = No processor
 config_php_optim_path = Path to binary<br><i>ex.: /usr/bin/%s</i>
@@ -10,8 +13,6 @@ minify_config_php_optim_gif = PHPOptim processor for GIFs
 minify_config_php_optim_png = PHPOptim processor for PNGs
 minify_config_php_optim_jpeg = PHPOptim processor for JPEGs
 minify_config_tinifykey = Tinify key<br><i>https://tinypng.com/developers</i>
-minify_config_pathcss = Path for generated CSS files<br><i>relative to document root, without trailing slashes</i>
-minify_config_pathjs = Path for generated JS files<br><i>relative to document root, without trailing slashes
 minify_config_action_save = Save settings
 minify_config_saved = Settings successfully saved!
 
