@@ -36,7 +36,7 @@
 										if (minify::isSCSS($asset)) {
 											$asset = minify::compileFile($asset, 'scss');
 										} else {
-											$asset = rex_path::base(substr($asset,1));
+											$asset = trim(rex_path::base(substr($asset,1)));
 										}
 										
 										switch ($sets[0]['output']) {
@@ -44,19 +44,19 @@
 												$assetsContent = '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</style>';
 											break;
 											default:
-												$assetsContent .= '<link rel="stylesheet" href="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.time() : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
+												$assetsContent .= '<link rel="stylesheet" href="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime($asset) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
 											break;
 										}
 									break;
 									case 'js':
-										$asset = rex_path::base(substr($asset,1));
+										$asset = trim(rex_path::base(substr($asset,1)));
 										
 										switch ($sets[0]['output']) {
 											case 'inline':
 												$assetsContent .= '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</script>';
 											break;
 											default:
-												$assetsContent .= '<script src="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.time() : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
+												$assetsContent .= '<script src="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime($asset) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
 											break;
 										}
 									break;
@@ -102,7 +102,12 @@
 				
 				//Start - minify html
 					if ($this->getConfig('minifyhtml')) {
-						$content = preg_replace(['/<!--(.*)-->/Uis',"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
+						if (rex_addon::get("search_it")->isAvailable()) {
+							$pattern = '/<!--((?!search_it)[\s\S])*?-->/is';
+						} else {
+ 							$pattern = '/<!--(.*)-->/Uis';
+ 						}
+						$content = preg_replace([$pattern,"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
 					}
 				//End - minify html
 			}
