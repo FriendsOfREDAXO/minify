@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Abstract minifier class
+ *
+ * Please report bugs on https://github.com/matthiasmullie/minify/issues
+ *
+ * @author Matthias Mullie <minify@mullie.eu>
+ * @copyright Copyright (c) 2012, Matthias Mullie. All rights reserved
+ * @license MIT License
+ */
 namespace MatthiasMullie\Minify;
 
 use MatthiasMullie\Minify\Exceptions\IOException;
@@ -10,6 +18,7 @@ use Psr\Cache\CacheItemInterface;
  *
  * Please report bugs on https://github.com/matthiasmullie/minify/issues
  *
+ * @package Minify
  * @author Matthias Mullie <minify@mullie.eu>
  * @copyright Copyright (c) 2012, Matthias Mullie. All rights reserved
  * @license MIT License
@@ -324,12 +333,13 @@ abstract class Minify
      * via restoreStrings().
      *
      * @param string[optional] $chars
+     * @param string[optional] $placeholderPrefix
      */
-    protected function extractStrings($chars = '\'"')
+    protected function extractStrings($chars = '\'"', $placeholderPrefix = '')
     {
         // PHP only supports $this inside anonymous functions since 5.4
         $minifier = $this;
-        $callback = function ($match) use ($minifier) {
+        $callback = function ($match) use ($minifier, $placeholderPrefix) {
             // check the second index here, because the first always contains a quote
             if ($match[2] === '') {
                 /*
@@ -342,7 +352,7 @@ abstract class Minify
             }
 
             $count = count($minifier->extracted);
-            $placeholder = $match[1].$count.$match[1];
+            $placeholder = $match[1].$placeholderPrefix.$count.$match[1];
             $minifier->extracted[$placeholder] = $match[1].$match[2].$match[1];
 
             return $placeholder;
