@@ -79,7 +79,7 @@
 											$content = str_replace($match[0], '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.$data.'</style>', $content);
 										break;
 										default:
-											$content = str_replace($match[0], '<link rel="stylesheet" href="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.time() : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>', $content);
+											$content = str_replace($match[0], '<link rel="stylesheet" href="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime(ltrim($data, '/')) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>', $content);
 										break;
 									}
 								break;
@@ -89,8 +89,10 @@
 											$content = str_replace($match[0], '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.$data.'</script>', $content);
 										break;
 										default:
-											$content = str_replace($match[0], '<script src="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.time() : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>', $content);
+											$content = str_replace($match[0], '<script src="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime(ltrim($data, '/')) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>', $content);
 										break;
+										
+											
 									}
 								break;
 							}

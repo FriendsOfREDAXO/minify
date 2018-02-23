@@ -30,6 +30,10 @@ minify_sets_label_attributes_note = Uma entrada por linha<br>example: media="pri
 minify_sets_label_assets = Ativos
 minify_sets_label_assets_note = Uma entrada por linha; Começa com um "/".<br>example: /ativos/css/styles.css
 
+minify_sets_function_clear_cache = Clear cache
+minify_sets_function_clear_cache_success = Cache successfully cleared!
+
 #permissions
 perm_general_minify[] = Permissões para o Minify-Addon
-perm_general_minify[sets] = Permissões para a página 'Sets' do Minify-Addons
+perm_general_minify[config] = Permissions for the page 'Configuration' of the Minify-Addon
+perm_general_minify[sets] = Permissions for the page 'Sets' of the Minify-Addon

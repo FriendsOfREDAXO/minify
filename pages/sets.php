@@ -110,5 +110,28 @@
 		$content = $fragment->parse('core/page/section.php');
 		
 		echo $content;
+	} else if ($func == 'clear_cache') {
+		//Start - delete all css files
+			$path = substr(rex_path::base(), 0, -1).$this->getConfig('pathcss').'/';
+			foreach (glob($path."*.css") as $filename) {
+				unlink($filename);
+			}
+		//End - delete all css files
+		
+		//Start - delete all js files
+			$path = substr(rex_path::base(), 0, -1).$this->getConfig('pathjs');
+			foreach (glob($path."*.js") as $filename) {
+				unlink($filename);
+			}
+		//End - delete all js files
+		
+		//Start - delete all cache files
+			$path = $this->getCachePath('');
+			foreach (glob($path."*.json") as $filename) {
+				unlink($filename);
+			}
+		//End - delete all cache files
+		
+		echo rex_view::success($this->i18n('sets_function_clear_cache_success'));
 	}
 ?>

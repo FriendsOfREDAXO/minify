@@ -30,6 +30,10 @@ minify_sets_label_attributes_note = Zeilengetrennt<br>Beispiel: media="print"
 minify_sets_label_assets = Assets
 minify_sets_label_assets_note = Zeilengetrennt; Beginnt mit einem /.<br>Beispiel: /assets/css/styles.css
 
+minify_sets_function_clear_cache = Cache löschen
+minify_sets_function_clear_cache_success = Cache erfolgreich gelöscht!
+
 #permissions
 perm_general_minify[] = Rechte für Minify-Addon
+perm_general_minify[config] = Rechte für die Seite 'Konfiguration' des Minify-Addons
 perm_general_minify[sets] = Rechte für die Seite 'Sets' des Minify-Addons
