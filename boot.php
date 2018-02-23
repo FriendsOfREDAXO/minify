@@ -44,7 +44,7 @@
 												$assetsContent = '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</style>';
 											break;
 											default:
-												$assetsContent .= '<link rel="stylesheet" href="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime($asset) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
+												$assetsContent .= '<link rel="stylesheet" href="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filemtime($asset) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>';
 											break;
 										}
 									break;
@@ -56,7 +56,7 @@
 												$assetsContent .= '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.rex_file::get($asset).'</script>';
 											break;
 											default:
-												$assetsContent .= '<script src="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime($asset) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
+												$assetsContent .= '<script src="'.trim(minify::relativePath($asset)).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filemtime($asset) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>';
 											break;
 										}
 									break;
@@ -79,7 +79,7 @@
 											$content = str_replace($match[0], '<style '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.$data.'</style>', $content);
 										break;
 										default:
-											$content = str_replace($match[0], '<link rel="stylesheet" href="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime(ltrim($data, '/')) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>', $content);
+											$content = str_replace($match[0], '<link rel="stylesheet" href="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filemtime(ltrim($data, '/')) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>', $content);
 										break;
 									}
 								break;
@@ -89,7 +89,7 @@
 											$content = str_replace($match[0], '<script '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'>'.$data.'</script>', $content);
 										break;
 										default:
-											$content = str_replace($match[0], '<script src="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filectime(ltrim($data, '/')) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>', $content);
+											$content = str_replace($match[0], '<script src="'.trim($data).(($sets[0]['ignore_browsercache'] == 'yes') ? '?time='.filemtime(ltrim($data, '/')) : '').'" '.((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '').'></script>', $content);
 										break;
 										
 											
