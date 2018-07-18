@@ -11,3 +11,6 @@ page:
         config: { title: 'translate:config', perm: minify[config] }
         sets: { title: 'translate:sets', perm: minify[sets] }
         clear_cache: { title: 'translate:sets_function_clear_cache', itemclass: 'pull-right', linkclass: 'btn btn-delete', href: { page: minify/sets, func: clear_cache } }
+    
+    requires:
+        redaxo: '>=5.1.0'
