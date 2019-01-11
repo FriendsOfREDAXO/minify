@@ -119,7 +119,7 @@
 		//End - delete all css files
 		
 		//Start - delete all js files
-			$path = substr(rex_path::base(), 0, -1).$this->getConfig('pathjs');
+			$path = substr(rex_path::base(), 0, -1).$this->getConfig('pathjs').'/';
 			foreach (glob($path."*.js") as $filename) {
 				unlink($filename);
 			}
