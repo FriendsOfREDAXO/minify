@@ -107,7 +107,7 @@
 						if (rex_addon::get("search_it")->isAvailable()) {
 							$pattern = '/<!--((?!search_it)[\s\S])*?-->/is';
 						} else {
- 							$pattern = '/<!--(.*)-->/Uis';
+ 							$pattern = '/<!--[^\[](.|\s)*?[^\]]-->/is';
  						}
 						$content = preg_replace([$pattern,"/[[:blank:]]+/"], ['',' '], str_replace(["\n","\r","\t"], '', $content));
 					}
