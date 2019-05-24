@@ -3,8 +3,9 @@ minify_title = Reduzir
 #subpage config
 minify_config = Configuração
 minify_config_minifyhtml = Reduzir HTML?
-minify_config_pathcss = Caminho para arquivos CSS gerados <br> <i> em relação à raiz do documento, sem barras oblíquas </i>
-minify_config_pathjs = Caminho para arquivos JS gerados <br> <i> em relação à raiz do documento, sem barras finais </i>
+minify_config_pathcss = Caminho para arquivos CSS gerados
+minify_config_pathjs = Caminho para arquivos JS gerados
+minify_config_hint = <i class="fa-info-circle"> em relação à raiz do documento, sem barras finais</i>
 minify_config_templates = Templates ausschließen
 minify_config_action_save = Salvar configurações
 minify_config_saved = Configurações salvas com sucesso!
@@ -16,6 +17,7 @@ minify_sets_norowsmessage = Nenhum set foi encontrado!
 minify_sets_column_name = Nome
 minify_sets_column_type = Tipo
 minify_sets_column_snippet = Snippet
+sets_column_cache = Cache
 
 minify_sets_formcaption_add = Adicionar set
 minify_sets_formcaption_edit = Editar set
@@ -30,8 +32,10 @@ minify_sets_label_attributes_note = Uma entrada por linha<br>example: media="pri
 minify_sets_label_assets = Ativos
 minify_sets_label_assets_note = Uma entrada por linha; Começa com um "/".<br>example: /ativos/css/styles.css
 
-minify_sets_function_clear_cache = Clear cache
-minify_sets_function_clear_cache_success = Cache successfully cleared!
+minify_sets_function_clear_cache = Limpar cache
+minify_sets_function_clear_cache_success = Cache limpo com sucesso!
+minify_sets_function_clear_cache_file_success = Arquivo de cache limpo com sucesso!
+minify_sets_function_clear_cache_file_error =O arquivo cache não existe!
 
 #permissions
 perm_general_minify[] = Permissões para o Minify-Addon
