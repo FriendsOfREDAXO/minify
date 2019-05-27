@@ -4,7 +4,9 @@ minify_title = Minificar
 minify_config = Ajustes
 minify_config_minifyhtml = Minimizar el HTML?
 minify_config_pathcss = Ruta para archivos CSS generados
+minify_config_pathcss_placeholder = /assets/cache/css
 minify_config_pathjs = Ruta para archivos JS generados
+minify_config_pathjs_placeholder = /assets/cache/js
 minify_config_hint = <i class="fa-info-circle"> relativo a la raíz del documento, sin barras inclinadas</i>
 minify_config_templates = Excluir plantillas
 minify_config_action_save = Guardar ajustes
@@ -38,6 +40,6 @@ minify_sets_function_clear_cache_file_success = Archivo de caché borrado con é
 minify_sets_function_clear_cache_file_error = El archivo de caché no existe!
 
 #permissions
-perm_general_minify[] = Permisos para Minify-Addon
-perm_general_minify[config] = Permisos para la página 'Configuración' de Minify-Addon
-perm_general_minify[sets] = Permisos para la página 'Conjuntos' del complemento Minificar
+minify_perm_general_minify[] = Permisos para Minify-Addon
+minify_perm_general_minify[config] = Permisos para la página 'Configuración' de Minify-Addon
+minify_perm_general_minify[sets] = Permisos para la página 'Conjuntos' del complemento Minificar

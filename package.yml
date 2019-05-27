@@ -1,5 +1,5 @@
 package: minify
-version: '2.1.0'
+version: '2.1.1'
 author: Friends Of REDAXO
 supportpage: github.com/FriendsOfREDAXO/minify
 
@@ -10,7 +10,9 @@ page:
     subpages:
         config: { title: 'translate:config', perm: minify[config] }
         sets: { title: 'translate:sets', perm: minify[sets] }
-        clear_cache: { title: 'translate:sets_function_clear_cache', itemclass: 'pull-right', linkclass: 'btn btn-delete', href: { page: minify/sets, cache: clear_cache } }
+        clear_cache: { title: 'translate:minify_sets_function_clear_cache', itemclass: 'pull-right', linkclass: 'btn btn-delete', href: { page: minify/sets, cache: clear_cache } }
     
     requires:
         redaxo: '>=5.1.0'
+        php:
+            version: '>= 5.3'

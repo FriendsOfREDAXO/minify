@@ -19,7 +19,7 @@ minify_sets_norowsmessage = Es wurden keine Sets gefunden
 minify_sets_column_name = Name
 minify_sets_column_type = Typ
 minify_sets_column_snippet = Snippet
-sets_column_cache = Cache
+minify_sets_column_cache = Cache
 
 minify_sets_formcaption_add = Set hinzufügen
 minify_sets_formcaption_edit = Set editieren
@@ -40,6 +40,6 @@ minify_sets_function_clear_cache_file_success = Cache Datei erfolgreich gelösch
 minify_sets_function_clear_cache_file_error = Cache Datei existiert nicht!
 
 #permissions
-perm_general_minify[] = Rechte für Minify-Addon
-perm_general_minify[config] = Rechte für die Seite 'Konfiguration' des Minify-Addons
-perm_general_minify[sets] = Rechte für die Seite 'Sets' des Minify-Addons
+minify_perm_general_minify[] = Rechte für Minify-Addon
+minify_perm_general_minify[config] = Rechte für die Seite 'Konfiguration' des Minify-Addons
+minify_perm_general_minify[sets] = Rechte für die Seite 'Sets' des Minify-Addons
