@@ -17,7 +17,7 @@ minify_sets_norowsmessage = No se encontraron conjuntos
 minify_sets_column_name = Nombre
 minify_sets_column_type = Tipo
 minify_sets_column_snippet = Retazo
-sets_column_cache = Cache
+minify_sets_column_cache = Cache
 
 minify_sets_formcaption_add = Añadir conjunto
 minify_sets_formcaption_edit = Editar conjunto
