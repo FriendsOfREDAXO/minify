@@ -66,7 +66,7 @@
 	$formElements = [];
 	
 	$n = [];
-	$n['field'] = '<input type="submit" name="config-submit" value="'.$this->i18n('config_action_save').'" '.rex::getAccesskey($this->i18n('config_action_save'), 'save').'>';
+	$n['field'] = '<input class="btn btn-save" type="submit" name="config-submit" value="'.$this->i18n('config_action_save').'" '.rex::getAccesskey($this->i18n('config_action_save'), 'save').'>';
 	$formElements[] = $n;
 	
 	$fragment = new rex_fragment();
