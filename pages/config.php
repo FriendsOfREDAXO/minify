@@ -1,4 +1,5 @@
 <?php
+
 $content = '';
 
 if (rex_post('config-submit', 'boolean')) {
