@@ -3,8 +3,11 @@ minify_title = Minificar
 #subpage config
 minify_config = Ajustes
 minify_config_minifyhtml = Minimizar el HTML?
-minify_config_pathcss = Ruta para archivos CSS generados<br><i>relativo a la raíz del documento, sin barras inclinadas</i>
-minify_config_pathjs = Ruta para archivos JS generados<br><i>relativo a la raíz del documento, sin barras inclinadas</i>
+minify_config_pathcss = Ruta para archivos CSS generados
+minify_config_pathcss_placeholder = /assets/cache/css
+minify_config_pathjs = Ruta para archivos JS generados
+minify_config_pathjs_placeholder = /assets/cache/js
+minify_config_hint = <i class="fa-info-circle"> relativo a la raíz del documento, sin barras inclinadas</i>
 minify_config_templates = Excluir plantillas
 minify_config_action_save = Guardar ajustes
 minify_config_saved = Ajustes guardados exitosamente!
@@ -16,6 +19,7 @@ minify_sets_norowsmessage = No se encontraron conjuntos
 minify_sets_column_name = Nombre
 minify_sets_column_type = Tipo
 minify_sets_column_snippet = Retazo
+minify_sets_column_cache = Cache
 
 minify_sets_formcaption_add = Añadir conjunto
 minify_sets_formcaption_edit = Editar conjunto
@@ -32,8 +36,10 @@ minify_sets_label_assets_note = Una entrada por línea; comienza con un "/". <br
 
 minify_sets_function_clear_cache = Limpiar cache
 minify_sets_function_clear_cache_success = ¡Caché borrado exitosamente!
+minify_sets_function_clear_cache_file_success = Archivo de caché borrado con éxito!
+minify_sets_function_clear_cache_file_error = El archivo de caché no existe!
 
 #permissions
-perm_general_minify[] = Permisos para Minify-Addon
-perm_general_minify[config] = Permisos para la página 'Configuración' de Minify-Addon
-perm_general_minify[sets] = Permisos para la página 'Conjuntos' del complemento Minificar
+minify_perm_general_minify[] = Permisos para Minify-Addon
+minify_perm_general_minify[config] = Permisos para la página 'Configuración' de Minify-Addon
+minify_perm_general_minify[sets] = Permisos para la página 'Conjuntos' del complemento Minificar

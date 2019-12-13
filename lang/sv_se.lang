@@ -3,8 +3,11 @@ minify_title = Minify
 #subpage config
 minify_config = Konfiguration
 minify_config_minifyhtml = Minimize HTML?
-minify_config_pathcss = Path for generated CSS files<br><i>relative to document root, without trailing slashes</i>
-minify_config_pathjs = Path for generated JS files<br><i>relative to document root, without trailing slashes
+minify_config_pathcss = Path for generated CSS files
+minify_config_pathcss_placeholder = /assets/cache/css
+minify_config_pathjs = Path for generated JS files
+minify_config_pathjs_placeholder = /assets/cache/js
+minify_config_hint = <i class="fa-info-circle"> relative to document root, without trailing slashes</i>
 minify_config_templates = Utesluta mallar
 minify_config_action_save = Spara inställningar
 minify_config_saved = Inställningar sparades
@@ -16,6 +19,7 @@ minify_sets_norowsmessage = Inga sets hittades
 minify_sets_column_name = Namn
 minify_sets_column_type = Typ
 minify_sets_column_snippet = Snippet
+minify_sets_column_cache = Cache
 
 minify_sets_formcaption_add = Tillfoga set
 minify_sets_formcaption_edit = Redigera set
@@ -30,10 +34,12 @@ minify_sets_label_attributes_note = One entry per line<br>example: media="print"
 minify_sets_label_assets = Assets
 minify_sets_label_assets_note = One entry per line; starts with a "/".<br>example: /assets/css/styles.css
 
-minify_sets_function_clear_cache = Clear cache
-minify_sets_function_clear_cache_success = Cache successfully cleared!
+minify_sets_function_clear_cache = Ta bort cache
+minify_sets_function_clear_cache_success = Cache har tagits bort!
+minify_sets_function_clear_cache_file_success = Cachefilen har tagits bort!
+minify_sets_function_clear_cache_file_error = Cachefilen finns inte!
 
 #permissions
-perm_general_minify[] = Rättigheter för Minify-Addon
-perm_general_minify[config] = Permissions for the page 'Configuration' of the Minify-Addon
-perm_general_minify[sets] = Rättigheter för sidan 'Sets' från Minify-Addon
+minify_perm_general_minify[] = Rättigheter för Minify-Addon
+minify_perm_general_minify[config] = Permissions for the page 'Configuration' of the Minify-Addon
+minify_perm_general_minify[sets] = Rättigheter för sidan 'Sets' från Minify-Addon

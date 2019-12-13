@@ -3,8 +3,11 @@ minify_title = Minify
 #subpage config
 minify_config = Configuration
 minify_config_minifyhtml = Minimize HTML?
-minify_config_pathcss = Path for generated CSS files<br><i>relative to document root, without trailing slashes</i>
-minify_config_pathjs = Path for generated JS files<br><i>relative to document root, without trailing slashes</i>
+minify_config_pathcss = Path for generated CSS files
+minify_config_pathcss_placeholder = /assets/cache/css
+minify_config_pathjs = Path for generated JS files
+minify_config_pathjs_placeholder = /assets/cache/js
+minify_config_hint = <i class="fa-info-circle"> relative to document root, without trailing slashes</i>
 minify_config_templates = Whitelist templates
 minify_config_action_save = Save settings
 minify_config_saved = Settings successfully saved!
@@ -16,6 +19,7 @@ minify_sets_norowsmessage = No sets were found
 minify_sets_column_name = Name
 minify_sets_column_type = Type
 minify_sets_column_snippet = Snippet
+minify_sets_column_cache = Cache
 
 minify_sets_formcaption_add = Add set
 minify_sets_formcaption_edit = Edit set
@@ -32,8 +36,10 @@ minify_sets_label_assets_note = One entry per line; starts with a "/".<br>exampl
 
 minify_sets_function_clear_cache = Clear cache
 minify_sets_function_clear_cache_success = Cache successfully cleared!
+minify_sets_function_clear_cache_file_success = Cache file successfully cleared!
+minify_sets_function_clear_cache_file_error = Cache file does not exist!
 
 #permissions
-perm_general_minify[] = Permissions for the Minify-Addon
-perm_general_minify[config] = Permissions for the page 'Configuration' of the Minify-Addon
-perm_general_minify[sets] = Permissions for the page 'Sets' of the Minify-Addon
+minify_perm_general_minify[] = Permissions for the Minify-Addon
+minify_perm_general_minify[config] = Permissions for the page 'Configuration' of the Minify-Addon
+minify_perm_general_minify[sets] = Permissions for the page 'Sets' of the Minify-Addon
