@@ -3,15 +3,15 @@
 $content = '';
 
 if (rex_post('config-submit', 'boolean')) {
-  $this->setConfig(rex_post('config', [
-    ['debugmode', 'bool'],
-    ['minifyhtml', 'bool'],
-    ['pathcss', 'string'],
-    ['pathjs', 'string'],
-    ['templates', 'array[int]'],
-  ]));
+    $this->setConfig(rex_post('config', [
+        ['debugmode', 'bool'],
+        ['minifyhtml', 'bool'],
+        ['pathcss', 'string'],
+        ['pathjs', 'string'],
+        ['templates', 'array[int]'],
+    ]));
 
-  $content .= rex_view::info($this->i18n('config_saved'));
+    $content .= rex_view::info($this->i18n('config_saved'));
 }
 
 $content .= '<div class="rex-form">';
@@ -85,4 +85,3 @@ $fragment->setVar('class', 'edit');
 $fragment->setVar('title', $this->i18n('config'));
 $fragment->setVar('body', $content, false);
 echo $fragment->parse('core/page/section.php');
-?>
