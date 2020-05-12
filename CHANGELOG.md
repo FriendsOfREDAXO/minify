@@ -1,6 +1,8 @@
 # Changelog
 
-## Version 2.1.1 // 24.05.2019
+## Version 2.2 // 12.05.2020
+
+### Vendor Update
 
 ### Neue Features
 * Minify Cache wird nun auch gelöscht bei Aufruf des Extension Point `CACHE_DELETED`
