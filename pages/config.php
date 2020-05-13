@@ -38,7 +38,7 @@ $formElements[] = $n;
 //Start - path_js
 $n              = [];
 $n['label']     = '<label for="minify-config-pathjs">' . $this->i18n('config_pathjs') . '</label>';
-$n['field']     = '<input class="form-control" type="text" id="minify-config-pathjs" name="config[pathjs]" value="' . $this->getConfig('pathjs') . '" placeholder="' . $this->i18n('config_pathcss_placeholder') . '"/>';
+$n['field']     = '<input class="form-control" type="text" id="minify-config-pathjs" name="config[pathjs]" value="' . $this->getConfig('pathjs') . '" placeholder="' . $this->i18n('config_pathjs_placeholder') . '"/>';
 $n['note']      = rex_i18n::rawMsg('minify_config_hint');
 $formElements[] = $n;
 //End - path_js
