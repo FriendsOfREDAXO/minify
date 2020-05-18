@@ -11,7 +11,16 @@ if (rex_post('config-submit', 'boolean')) {
         ['templates', 'array[int]'],
     ]));
 
-    $content .= rex_view::info($this->i18n('config_saved'));
+    $post = rex_post('config');
+    try {
+        rex_dir::create(rex_path::base(substr($post['pathcss'], 1)));
+        rex_dir::create(rex_path::base(substr($post['pathjs'], 1)));
+        $content .= rex_view::info($this->i18n('config_saved'));
+
+    } catch (rex_exception $e) {
+        $content .= rex_view::warning($this->i18n('config_error'));
+    }
+
 }
 
 $content .= '<div class="rex-form">';
@@ -38,7 +47,7 @@ $formElements[] = $n;
 //Start - path_js
 $n              = [];
 $n['label']     = '<label for="minify-config-pathjs">' . $this->i18n('config_pathjs') . '</label>';
-$n['field']     = '<input class="form-control" type="text" id="minify-config-pathjs" name="config[pathjs]" value="' . $this->getConfig('pathjs') . '" placeholder="' . $this->i18n('config_pathcss_placeholder') . '"/>';
+$n['field']     = '<input class="form-control" type="text" id="minify-config-pathjs" name="config[pathjs]" value="' . $this->getConfig('pathjs') . '" placeholder="' . $this->i18n('config_pathjs_placeholder') . '"/>';
 $n['note']      = rex_i18n::rawMsg('minify_config_hint');
 $formElements[] = $n;
 //End - path_js
