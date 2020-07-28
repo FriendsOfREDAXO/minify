@@ -18,7 +18,7 @@ if (!rex::isBackend()) {
 
         $whitelistTemplates = rex_addon::get('minify')->getConfig('templates', []);
         if (null !== rex_article::getCurrent() && !in_array(rex_article::getCurrent()->getTemplateId(), $whitelistTemplates)) {
-            preg_match_all("/REX_MINIFY\[type=(.*)\ set=(.*)\]/", $content, $matches, PREG_SET_ORDER);
+            preg_match_all("/REX_MINIFY\[type=(.*?)\ set=(.*?)\]/", $content, $matches, PREG_SET_ORDER);
 
             foreach ($matches as $match) {
                 //Start - get set by name and type
