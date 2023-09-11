@@ -58,7 +58,7 @@ class minify
         $newCache = [];
 
         if (file_exists(rex_path::addonCache(__CLASS__, $type . '_' . rex_string::normalize($set) . '.json'))) {
-            $string   = file_get_contents(rex_path::addonCache(__CLASS__, $type . '_' . rex_string::normalize($set) . '.json'));
+            $string   = rex_file::get(rex_path::addonCache(__CLASS__, $type . '_' . rex_string::normalize($set) . '.json',''));
             $oldCache = json_decode($string, true);
         }
 
