@@ -16,11 +16,9 @@ if (rex_post('config-submit', 'boolean')) {
         rex_dir::create(rex_path::base(substr($post['pathcss'], 1)));
         rex_dir::create(rex_path::base(substr($post['pathjs'], 1)));
         $content .= rex_view::info($this->i18n('config_saved'));
-
     } catch (rex_exception $e) {
         $content .= rex_view::warning($this->i18n('config_error'));
     }
-
 }
 
 $content .= '<div class="rex-form">';
