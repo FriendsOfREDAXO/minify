@@ -58,7 +58,7 @@ class minify
         $newCache = [];
 
         if (file_exists(rex_path::addonCache(__CLASS__, $type . '_' . rex_string::normalize($set) . '.json'))) {
-            $string   = rex_file::get(rex_path::addonCache(__CLASS__, $type . '_' . rex_string::normalize($set) . '.json',''));
+            $string   = rex_file::get(rex_path::addonCache(__CLASS__, $type . '_' . rex_string::normalize($set) . '.json', ''));
             $oldCache = json_decode($string, true);
         }
 
@@ -90,15 +90,15 @@ class minify
             if ($minify) {
                 switch ($type) {
                     case 'css':
-                    $path     = rex_path::base(substr($this->addon->getConfig('pathcss'), 1) . '/bundled.' . rex_string::normalize($set) . '.' . $type);
-                    $minifier = new MatthiasMullie\Minify\CSS();
+                        $path     = rex_path::base(substr($this->addon->getConfig('pathcss'), 1) . '/bundled.' . rex_string::normalize($set) . '.' . $type);
+                        $minifier = new MatthiasMullie\Minify\CSS();
 
-                    break;
+                        break;
                     case 'js':
-                    $path     = rex_path::base(substr($this->addon->getConfig('pathjs'), 1) . '/bundled.' . rex_string::normalize($set) . '.' . $type);
-                    $minifier = new MatthiasMullie\Minify\JS();
+                        $path     = rex_path::base(substr($this->addon->getConfig('pathjs'), 1) . '/bundled.' . rex_string::normalize($set) . '.' . $type);
+                        $minifier = new MatthiasMullie\Minify\JS();
 
-                    break;
+                        break;
                 }
 
                 $newCache['path'] = $path;
@@ -123,13 +123,13 @@ class minify
 
             switch ($output) {
                 case 'file':
-                return self::relativePath($path);
+                    return self::relativePath($path);
 
-                break;
+                    break;
                 case 'inline':
-                return rex_file::get($path);
+                    return rex_file::get($path);
 
-                break;
+                    break;
             }
         }
 
