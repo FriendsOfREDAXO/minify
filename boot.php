@@ -47,8 +47,26 @@ if (!rex::isBackend()) {
 
                       break;
                     default:
-                      $assetsContent .= '<link rel="stylesheet" href="' . trim(minify::relativePath($asset)) . (('yes' == $sets[0]['ignore_browsercache']) ? '?time=' . filemtime($asset) : '') . '" ' . ((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '') . '>';
-
+                      // Parse attributes to check for custom rel attribute
+                      $attributes = !empty($sets[0]['attributes']) ? explode(PHP_EOL, $sets[0]['attributes']) : [];
+                      $hasRelAttribute = false;
+                      $attributesStr = '';
+                      
+                      // Efficiently check for rel attribute and build attributes string
+                      if (!empty($attributes)) {
+                        foreach ($attributes as $attr) {
+                          if (preg_match('/^rel\s*=/', $attr)) {
+                            $hasRelAttribute = true;
+                          }
+                          $attributesStr .= ' ' . $attr;
+                        }
+                      }
+                      
+                      // Add rel="stylesheet" only if no custom rel is provided
+                      $assetsContent .= '<link ' . ($hasRelAttribute ? '' : 'rel="stylesheet" ') . 
+                                      'href="' . trim(minify::relativePath($asset)) . 
+                                      (('yes' == $sets[0]['ignore_browsercache']) ? '?time=' . filemtime($asset) : '') . 
+                                      '"' . $attributesStr . '>';
                       break;
                   }
 
@@ -88,8 +106,28 @@ if (!rex::isBackend()) {
 
                     break;
                   default:
-                    $content = str_replace($match[0], '<link rel="stylesheet" href="' . trim($data) . (('yes' == $sets[0]['ignore_browsercache']) ? '?time=' . filemtime(ltrim($data, '/')) : '') . '" ' . ((!empty($sets[0]['attributes'])) ? implode(' ', explode(PHP_EOL, $sets[0]['attributes'])) : '') . '>', $content);
-
+                    // Parse attributes to check for custom rel attribute for minimized files
+                    $attributes = !empty($sets[0]['attributes']) ? explode(PHP_EOL, $sets[0]['attributes']) : [];
+                    $hasRelAttribute = false;
+                    $attributesStr = '';
+                    
+                    // Efficiently check for rel attribute and build attributes string
+                    if (!empty($attributes)) {
+                      foreach ($attributes as $attr) {
+                        if (preg_match('/^rel\s*=/', $attr)) {
+                          $hasRelAttribute = true;
+                        }
+                        $attributesStr .= ' ' . $attr;
+                      }
+                    }
+                    
+                    // Add rel="stylesheet" only if no custom rel is provided
+                    $content = str_replace($match[0], 
+                                          '<link ' . ($hasRelAttribute ? '' : 'rel="stylesheet" ') . 
+                                          'href="' . trim($data) . 
+                                          (('yes' == $sets[0]['ignore_browsercache']) ? '?time=' . filemtime(ltrim($data, '/')) : '') . 
+                                          '"' . $attributesStr . '>', 
+                                          $content);
                     break;
                 }
 
